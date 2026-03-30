@@ -1,14 +1,27 @@
 "use client"
 
+import { auth0 } from '@/app/lib/auth0.js'
 import { useEffect, useState } from "react"
 import { useStudents } from "@/app/hooks/useStudents"
 import { useStudentsStore, Student } from "@/app/store/students"
 
-export default function StudentsPage() {
+export default async function StudentsPage() {
   const { fetchStudents } = useStudents()
   const { students } = useStudentsStore()
   const [isLoading, setIsLoading] = useState(true)
+  const session = await auth0.getSession();
 
+  if (!session) {
+    return (
+      <>
+        {/* Redirects to Auth0 to sign up */}
+        <a href="/auth/login?screen_hint=signup">Signup</a>
+        <br />
+        {/* Redirects to Auth0 to log in */}
+        <a href="/auth/login">Login</a>
+      </>
+    );
+  }
   useEffect(() => {
     const loadStudents = async () => {
       try {

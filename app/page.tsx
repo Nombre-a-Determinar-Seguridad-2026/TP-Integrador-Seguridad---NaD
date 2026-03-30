@@ -1,15 +1,29 @@
 "use client";
-
+import { auth0 } from '@/app/lib/auth0.js'
 import { useConversation } from '@/app/hooks/useConversation'
 import { useState, useRef, useEffect, FormEvent } from "react"
 import { useConversationStore, UserRole, Message } from '@/app/store/conversation'
 
-export default function Home() {
+export default async function Home() {
   const { conversation, clearConversation } = useConversationStore() as any
   const [inputValue, setInputValue] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-
+  // Check if user is authenticated
+  const session = await auth0.getSession();
+  
+  if (!session) {
+    return (
+      <>
+        {/* Redirects to Auth0 to sign up */}
+        <a href="/auth/login?screen_hint=signup">Signup</a>
+        <br />
+        {/* Redirects to Auth0 to log in */}
+        <a href="/auth/login">Login</a>
+      </>
+    );
+  }
+  
   // Auto-scroll al final cuando hay nuevos mensajes
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
