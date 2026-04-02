@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LogoutButton from '@/components/LogoutButton'
+
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -32,6 +34,7 @@ export function Header() {
         <nav className="flex items-center gap-2">
           <NavLink href="/">Chat</NavLink>
           <NavLink href="/students">Estudiantes</NavLink>
+          <LogoutButton/>
         </nav>
       </div>
     </header>

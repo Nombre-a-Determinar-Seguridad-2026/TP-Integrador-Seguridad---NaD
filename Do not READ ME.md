@@ -51,3 +51,6 @@ Si vas a modificar el código, estos son los archivos y carpetas más importante
 - 🪝 `app/hooks/useConversation.ts`: Contiene la lógica que conecta la interfaz gráfica (frontend) con la ruta de la API (backend).
 
 > **Tip para el equipo:** Si necesitan modificar cómo se ven los mensajes, revisen `app/page.tsx`. Si necesitan cambiar qué responde la IA, revisen `app/api/chat/route.ts`.
+
+falsoRefalso@fakemail.com
+jWu39r7SHDZwYam
