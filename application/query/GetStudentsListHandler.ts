@@ -18,8 +18,24 @@ const HARDCODED_LIST = [
 
 export class GetStudentsListHandler {
 
-    async handle(command: GetStudentsListQuery): Promise<GetStudentsListResponse> {
-        const response = HARDCODED_LIST.map(student => ({
+    async handle(query: GetStudentsListQuery): Promise<GetStudentsListResponse> {
+        let filteredList = HARDCODED_LIST
+
+        if (query.userRole !== 'Admin') {
+            if (!query.userCatedra) {
+                const response = HARDCODED_LIST.filter(s => s.active).slice(0, 3).map(student => ({
+                    id: student.id,
+                    name: student.name,
+                    email: '***',
+                    active: student.active,
+                    catedra: '***',
+                }))
+                return { list: response }
+            }
+            filteredList = HARDCODED_LIST.filter(student => student.catedra === query.userCatedra)
+        }
+
+        const response = filteredList.map(student => ({
             id: student.id,
             name: student.name,
             email: student.email,
@@ -32,6 +48,8 @@ export class GetStudentsListHandler {
 }
 
 export interface GetStudentsListQuery {
+    userRole?: string
+    userCatedra?: string
 }
 
 export interface GetStudentsListResponse {
@@ -44,4 +62,4 @@ export interface Student {
     email: string
     active: boolean
     catedra: string
-}
+}	
