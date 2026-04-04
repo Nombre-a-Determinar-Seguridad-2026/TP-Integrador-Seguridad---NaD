@@ -14,42 +14,53 @@ const HARDCODED_LIST = [
     { id: 13, name: 'Jorge Díaz', email: 'jorge.diaz@example.com', active: true, catedra:"Seguridad" },
     { id: 14, name: 'Paula Morales', email: 'paula.morales@example.com', active: true, catedra:"Gestión" },
     { id: 15, name: 'Andrés Vega', email: 'andres.vega@example.com', active: true, catedra:"Seguridad" },
+    { id: 16, name: 'Andrés Pascal', email: 'andres.vega@example.com', active: true, catedra:"Redes" },
 ];
 
+// no sé qué tan delicados son estos datos
+// lo hacemos rápido así por temas de testing
+const HARDCODED_CATEDRAS = [ //la id es la del usuario (userID)
+    { id: "auth0|69ce7e407f2321b8983b4fe0", catedra:"Seguridad"}, // correofalso123@gmail.com
+    { id: "auth0|69ce84ddb150e9e8d9612f7c", catedra:"Gestión"}, // elmascapo@admin.com
+    { id: "auth0|69ce753bb150e9e8d9611bfe", catedra:"Redes"}, // falsorefalso@fakemail.com
+    { id: "auth0|69ce753bb150e9e8d9611bfe", catedra:"Gestión"}, // falsorefalso@fakemail.com
+];
+
+
+// estaEnCatedra(userID, catedraAlumno)
+// función que devuelva verdadero si existe el usuario en enhardcoded_catedras, 
+// filtrado para la cátedra del ieismo alumno que se está planteando mostrar.
+function estaEnCatedra(idUsuario: string, catedraAlumno: string){
+    let listaFiltrada = (HARDCODED_CATEDRAS
+        .filter(alumno => (alumno.catedra === catedraAlumno)))
+        .filter(usuario => usuario.id === idUsuario)
+    return (listaFiltrada.length > 0);
+}
+
 export class GetStudentsListHandler {
-
     async handle(query: GetStudentsListQuery): Promise<GetStudentsListResponse> {
-        let filteredList = HARDCODED_LIST
-
+        let listaEstudiantes = HARDCODED_LIST
+        
         if (query.userRole !== 'Admin') {
-            if (!query.userCatedra) {
-                const response = HARDCODED_LIST.filter(s => s.active).slice(0, 3).map(student => ({
-                    id: student.id,
-                    name: student.name,
-                    email: '***',
-                    active: student.active,
-                    catedra: '***',
-                }))
-                return { list: response }
-            }
-            filteredList = HARDCODED_LIST.filter(student => student.catedra === query.userCatedra)
+            listaEstudiantes = listaEstudiantes
+            .filter(estudiante => estaEnCatedra(query.userId, estudiante.catedra))
         }
+       
+        const response = listaEstudiantes.map(estudiante => ({
+            id: estudiante.id,
+            name: estudiante.name,
+            email: estudiante.email,
+            active: estudiante.active,
+            catedra: estudiante.catedra,
+        }));
 
-        const response = filteredList.map(student => ({
-            id: student.id,
-            name: student.name,
-            email: student.email,
-            active: student.active,
-            catedra: student.catedra,
-        }))
-
-        return { list: response }
+        return { list: response };
     }
 }
 
 export interface GetStudentsListQuery {
     userRole?: string
-    userCatedra?: string
+    userId: string
 }
 
 export interface GetStudentsListResponse {
@@ -62,4 +73,4 @@ export interface Student {
     email: string
     active: boolean
     catedra: string
-}	
+}
