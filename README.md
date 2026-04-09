@@ -6,44 +6,15 @@ Está diseñada con un enfoque _mobile-first_ para que se sienta como una aplica
 
 ---
 
-## 🚀 Cómo empezar (Guía rápida)
+Seguridad agregada, Entrega 1:
+   Autenticación:
+   Solo es posible acceder al chat y la lista de estudiantes si se utiliza un usuario registrado.
+   Autorización:
+   Los visibilidad de los alumnos de la lista depende del rol y catedra de un usuario. 
+   Un usuario recive el rol de estudiante al ser creado.
+   Elementos sensibles:
+   Los elementos sensibles del código, como lo son la API_KEY y otros datos de la seguridad se encuentran en un .env, fuera del código y la página.
 
-### Requisitos previos
-Asegúrate de tener instalado en tu computadora:
-- Node.js (Se recomienda la versión 18 o superior).
-
-### Instalación y ejecución
-
-1. **Instala las dependencias** del proyecto. Abre tu terminal en la carpeta raíz del proyecto y ejecuta:
-   ```bash
-   npm install
-   ```
-
-2. **Inicia el servidor de desarrollo** localmente:
-   ```bash
-   npm run dev
-   ```
-
-3. **Abre la aplicación:** Ve a tu navegador y entra a http://localhost:3000. ¡Deberías ver la interfaz del chat!
-
----
-
-## 🛠️ Tecnologías Principales
-
-- **Next.js (App Router):** El framework de React que usamos tanto para el frontend como para las rutas de API (backend ligero).
-- **React:** Para construir la interfaz de usuario.
-- **Tailwind CSS:** Para los estilos rápidos, responsivos y el soporte de "Modo Oscuro".
-- **Zustand:** Para manejar el estado global de la aplicación (como guardar el historial de la conversación).
-
----
-
-## 📂 Estructura clave para estudiantes
-
-Si vas a modificar el código, estos son los archivos y carpetas más importantes que debes conocer:
-
-- 🖥️ `app/page.tsx`: Es la pantalla principal. Aquí está el diseño del chat (el _Header_, el área de mensajes y el _Input_ para escribir).
-- ⚙️ `app/api/chat/route.ts`: Es el "Backend" de nuestro chat. Esta ruta recibe los mensajes del usuario y es donde deberás conectar la lógica para que la Inteligencia Artificial devuelva una respuesta.
-- 🧠 `app/store/conversation.ts`: Aquí se guarda la memoria de la conversación actual utilizando Zustand.
-- 🪝 `app/hooks/useConversation.ts`: Contiene la lógica que conecta la interfaz gráfica (frontend) con la ruta de la API (backend).
-
-> **Tip para el equipo:** Si necesitan modificar cómo se ven los mensajes, revisen `app/page.tsx`. Si necesitan cambiar qué responde la IA, revisen `app/api/chat/route.ts`.
+   Todo esto se logro mediante la integración con la herramienta Auth0.
+   *Las catedras se encuentran hardcodeadas a usuarios especificos, y que no se considero correcto implementarlas en el sistema general dentro del alcance de lo pedido.
+   Se planea implementar junto con otras carcteristicas de usuario una vez se modifique la lista para funcionar con datos de usuarios reales en lugar elementos hardcodeados. 
