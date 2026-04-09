@@ -9,13 +9,13 @@ Está diseñada con un enfoque _mobile-first_ para que se sienta como una aplica
 Seguridad agregada, Entrega 1:
 
 Autenticación:
-   Solo es posible acceder al chat y la lista de estudiantes si se utiliza un usuario registrado.
+   Solo es posible acceder al chat y a la lista de estudiantes si se utiliza un usuario registrado.
 Autorización:
-   Los visibilidad de los alumnos de la lista depende del rol y catedra de un usuario. 
-   Un usuario recive el rol de estudiante al ser creado.
+   La visibilidad de los alumnos de la lista depende del rol y catedra del usuario. 
+   Un usuario recibe el rol de estudiante por defecto al ser creado.
 Elementos sensibles:
-   Los elementos sensibles del código, como lo son la API_KEY y otros datos de la seguridad se encuentran en un .env, fuera del código y la página.
+   Los elementos sensibles del código, como lo son la API_KEY y otros datos de la seguridad se encuentran en un .env, fuera del código y del repositorio.
 
-Todo esto se logro mediante la integración con la herramienta Auth0.
-*Las catedras se encuentran hardcodeadas a usuarios especificos, y que no se considero correcto implementarlas en el sistema general dentro del alcance de lo pedido.
-Se planea implementar junto con otras carcteristicas de usuario una vez se modifique la lista para funcionar con datos de usuarios reales en lugar elementos hardcodeados. z
+Todo esto se logró mediante la integración de la herramienta Auth0.
+*Las relaciones con las cátedras se encuentran hardcodeadas a los usuarios especificos que corresponda (la mayoría son de ejemplo), ya que no se considero correcto implementarlas en el sistema general dentro del alcance de lo pedido.
+Se planea implementar junto con otras carcteristicas de usuario una vez se modifique la lista para funcionar con datos de usuarios reales en lugar de elementos hardcodeados. 
