@@ -17,5 +17,5 @@ Elementos sensibles:
    Los elementos sensibles del código, como lo son la API_KEY y otros datos de la seguridad se encuentran en un .env, fuera del código y del repositorio.
 
 Todo esto se logró mediante la integración de la herramienta Auth0.
-*Las relaciones con las cátedras se encuentran hardcodeadas a los usuarios especificos que corresponda (la mayoría son de ejemplo), ya que no se considero correcto implementarlas en el sistema general dentro del alcance de lo pedido.
+Las relaciones con las cátedras se encuentran hardcodeadas a los usuarios especificos que corresponda (la mayoría son de ejemplo), ya que no se considero correcto implementarlas en el sistema general dentro del alcance de lo pedido.
 Se planea implementar junto con otras carcteristicas de usuario una vez se modifique la lista para funcionar con datos de usuarios reales en lugar de elementos hardcodeados. 
