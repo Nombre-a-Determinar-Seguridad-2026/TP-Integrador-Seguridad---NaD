@@ -1,16 +1,21 @@
-# .env
+# Secure Campus IA 🎓🤖
 
-Migración de APIS a archivo .env.
+Bienvenido al repositorio de **Secure Campus IA**. Este proyecto es una aplicación web moderna desarrollada con Next.js que implementa una interfaz de chat con Inteligencia Artificial.
+
+Está diseñada con un enfoque _mobile-first_ para que se sienta como una aplicación nativa (sin scroll global, solo en el área de mensajes) y cuenta con un diseño limpio utilizando Tailwind CSS.
 
 ---
 
-# Auth0
+Seguridad agregada, Entrega 1:
 
-# A arreglar
+Autenticación:
+   Solo es posible acceder al chat y a la lista de estudiantes si se utiliza un usuario registrado.
+Autorización:
+   La visibilidad de los alumnos de la lista depende del rol y catedra del usuario. 
+   Un usuario recibe el rol de estudiante por defecto al ser creado.
+Elementos sensibles:
+   Los elementos sensibles del código, como lo son la API_KEY y otros datos de la seguridad se encuentran en un .env, fuera del código y del repositorio.
 
-WARNING: Not all required options were provided when creating an instance of Auth0Client. Ensure to provide all missing options, either by passing it to the Auth0Client constructor, or by setting
-the corresponding environment variable.
-Missing: domain: Set AUTH0_DOMAIN env var or pass domain in options
-Missing: clientId: Set AUTH0_CLIENT_ID env var or pass clientId in options
-Missing: secret: Set AUTH0_SECRET env var or pass secret in options
-Missing: clientAuthentication: Set either AUTH0_CLIENT_SECRET env var or AUTH0_CLIENT_ASSERTION_SIGNING_KEY env var, or pass clientSecret or clientAssertionSigningKey in options
+Todo esto se logró mediante la integración de la herramienta Auth0.
+Las relaciones con las cátedras se encuentran hardcodeadas a los usuarios especificos que corresponda (la mayoría son de ejemplo), ya que no se considero correcto implementarlas en el sistema general dentro del alcance de lo pedido.
+Se planea implementar junto con otras carcteristicas de usuario una vez se modifique la lista para funcionar con datos de usuarios reales en lugar de elementos hardcodeados. 
