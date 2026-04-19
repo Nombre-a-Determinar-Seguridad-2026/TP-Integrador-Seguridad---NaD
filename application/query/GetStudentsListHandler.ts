@@ -40,11 +40,15 @@ function estaEnCatedra(idUsuario: string, catedraAlumno: string){
 export class GetStudentsListHandler {
     async handle(query: GetStudentsListQuery): Promise<GetStudentsListResponse> {
         let listaEstudiantes = HARDCODED_LIST
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 795a4586b46617c6f382eccb8e4d14293b822bad
         if (query.userRole !== 'Admin') {
             listaEstudiantes = listaEstudiantes
             .filter(estudiante => estaEnCatedra(query.userId, estudiante.catedra))
         }
-
+       
         const response = listaEstudiantes.map(estudiante => ({
             id: estudiante.id,
             name: estudiante.name,
@@ -53,6 +57,17 @@ export class GetStudentsListHandler {
             catedra: estudiante.catedra,
         }));
 
+<<<<<<< HEAD
+=======
+        const response = listaEstudiantes.map(estudiante => ({
+            id: estudiante.id,
+            name: estudiante.name,
+            email: estudiante.email,
+            active: estudiante.active,
+            catedra: estudiante.catedra,
+        }));
+
+>>>>>>> 795a4586b46617c6f382eccb8e4d14293b822bad
         return { list: response };
     }
 }
